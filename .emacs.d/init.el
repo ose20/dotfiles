@@ -13,6 +13,31 @@
 ;; 引数のディレクトリとそのサブディレクトリをload-pathに追加
 (add-to-load-path "elisp" "conf" "public_repos")
 
+;;; Emacs 実践入門から引用
+;;; P112-113 ELPAリポジトリを追加する
+(require 'package) ; package.elを有効化
+;; パッケージリポジトリにMarmaladeとMELPAを追加
+(add-to-list
+ 'package-archives
+ '("marmalade" . "https://marmalade-repo.org/packages/"))
+(add-to-list
+ 'package-archives
+ '("melpa" . "https://melpa.org/packages/"))
+(package-initialize) ; インストール済みのElispを読み込む
+;; 最新のpackageリストを読み込む
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+
+;;; Emacs 実践入門より
+;;; P208 ターミナルの利用 multi-term
+(package-install 'multi-term)
+;; multi-termの設定
+(when (require 'multi-term nil t)
+  ;; 使用するシェルを指定
+  (setq multi-term-program "/bin/bash"))
+
+
 ;; 以下はもともと ~/.emacs にあったものをここに移植したもの
 ;; Emacs 実践入門p16 において、設定ファイルは ~/.emacs.d/ にまとめる方法
 ;; を勧めていたので採用
@@ -30,7 +55,7 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+;;(package-initialize)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -38,20 +63,20 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ac-use-fuzzy nil)
- '(backup-directory-alist (quote (("." . "~/.local/share/emacs/backups"))))
+ '(backup-directory-alist '(("." . "~/.local/share/emacs/backups")))
  '(compilation-context-lines 2)
  '(compilation-error-screen-columns nil)
  '(compilation-scroll-output t)
- '(compilation-search-path (quote (nil "src")))
+ '(compilation-search-path '(nil "src"))
  '(custom-safe-themes
-   (quote
-    ("0f0a885f4ce5b6f97e33c7483bfe4515220e9cbd9ab3ca798e0972f665f8ee4d" default)))
+   '("0f0a885f4ce5b6f97e33c7483bfe4515220e9cbd9ab3ca798e0972f665f8ee4d" default))
  '(electric-indent-mode nil)
  '(indent-tabs-mode nil)
  '(line-move-visual t)
  '(next-error-highlight t)
  '(next-error-highlight-no-select t)
  '(next-line-add-newlines nil)
+ '(package-selected-packages '(multi-term))
  '(require-final-newline t)
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
