@@ -1,0 +1,4 @@
+バックアップから clone した場合、.emacs.d/elpa/ 内の次のパッケージは削除してしまい、
+.emacs.d/init.el 内の最初の読み込みでインストールした方が良さそう
+ - auto-completion 系
+ - flycheck 系

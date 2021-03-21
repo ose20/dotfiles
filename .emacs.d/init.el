@@ -187,7 +187,7 @@
 (require 'helm-config)
 
 ;;; P128 補完入力の強化 Auto Complete Mode
-;;(package-install 'auto-complete)
+(package-install 'auto-complete)
 ;; auto-completeの設定
 (when (require 'auto-complete-config nil t)
   (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
