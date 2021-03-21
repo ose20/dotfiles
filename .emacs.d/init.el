@@ -76,7 +76,8 @@
  '(next-error-highlight t)
  '(next-error-highlight-no-select t)
  '(next-line-add-newlines nil)
- '(package-selected-packages '(auto-complete helm-descbinds web-mode helm multi-term))
+ '(package-selected-packages
+   '(flycheck-pos-tip flycheck web-mode-edit-element auto-complete helm-descbinds web-mode helm multi-term))
  '(require-final-newline t)
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
@@ -132,7 +133,7 @@
 ;; 先ほどとは異なりglobal-set-keyを利用
 (global-set-key (kbd "C-m") 'newline-and-indent)
 ;; 折り返しトグルコマンド
-;;(define-key global-map (kbd "C-c l") 'toggle-truncate-lines)
+(define-key global-map (kbd "C-c l") 'toggle-truncate-lines)
 ;; "C-t" でウィンドウを切り替える。初期値はtranspose-chars
 (define-key global-map (kbd "C-t") 'other-window)
 
@@ -193,7 +194,45 @@
   (setq ac-use-menu-map t)
   (setq ac-ignore-case nil))
 
-;;; 最初期に init.el に書いていたもの
+;;; P153-154 web-mode
+(package-install 'web-mode)
+(when (require 'web-mode nil t)
+  ;; 自動的にweb-modeを起動したい拡張子を追加する
+  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.ctp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  ;;; web-modeのインデント設定用フック
+  ;; (defun web-mode-hook ()
+  ;;   "Hooks for Web mode."
+  ;;   (setq web-mode-markup-indent-offset 2) ; HTMLのインデイント
+  ;;   (setq web-mode-css-indent-offset 2) ; CSSのインデント
+  ;;   (setq web-mode-code-indent-offset 2) ; JS, PHP, Rubyなどのインデント
+  ;;   (setq web-mode-comment-style 2) ; web-mode内のコメントのインデント
+  ;;   (setq web-mode-style-padding 1) ; <style>内のインデント開始レベル
+  ;;   (setq web-mode-script-padding 1) ; <script>内のインデント開始レベル
+  ;;   )
+  ;; (add-hook 'web-mode-hook  'web-mode-hook)
+  )
+
+;;; P172-173 Flycheckの利用
+(package-install 'flycheck)
+
+;; 文法チェックを実行する
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;;; 機能を追加する
+;;(package-install 'flycheck-pos-tip)
+(with-eval-after-load 'flycheck
+  (flycheck-pos-tip-mode))
+
+
+;;; mode init.el に書いていたもの
 (global-linum-mode t)
 (setq linum-format "%4d ")
 ;;(setq-default indent-tabs-mode nil)
