@@ -231,6 +231,7 @@
 (with-eval-after-load 'flycheck
   (flycheck-pos-tip-mode))
 
+(electric-pair-mode 1)
 
 ;;; mode init.el に書いていたもの
 (global-linum-mode t)
