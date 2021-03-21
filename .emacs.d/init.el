@@ -11,7 +11,8 @@
             (normal-top-level-add-subdirs-to-load-path))))))
 
 ;; 引数のディレクトリとそのサブディレクトリをload-pathに追加
-(add-to-load-path "elisp" "conf" "public_repos")
+;; まだどのディレクトリの中も空なのでコメントアウトしておく
+;;(add-to-load-path "elisp" "conf" "public_repos")
 
 ;;; Emacs 実践入門から引用
 ;;; P112-113 ELPAリポジトリを追加する
