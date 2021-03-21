@@ -2,3 +2,4 @@
 .emacs.d/init.el 内の最初の読み込みでインストールした方が良さそう
  - auto-completion 系
  - flycheck 系
+ - web-mode 系
