@@ -188,6 +188,7 @@
 
 ;;; P128 補完入力の強化 Auto Complete Mode
 (package-install 'auto-complete)
+(require 'auto-complete)
 ;; auto-completeの設定
 (when (require 'auto-complete-config nil t)
   (define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
@@ -237,7 +238,10 @@
 ;;; mode init.el に書いていたもの
 (global-linum-mode t)
 (setq linum-format "%4d ")
-;;(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
+
+
+
 
 (setq mode-line-position
       '((-3 "%p")
