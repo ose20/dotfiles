@@ -229,7 +229,7 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;; 機能を追加する
-;;(package-install 'flycheck-pos-tip)
+(package-install 'flycheck-pos-tip)
 (with-eval-after-load 'flycheck
   (flycheck-pos-tip-mode))
 
