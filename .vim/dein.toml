@@ -1,0 +1,14 @@
+[[plugins]]
+repo = 'junegunn/fzf'
+build_on = '''
+./install -all
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+
+[[plugins]]
+repo = 'beikome/cosme.vim'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
